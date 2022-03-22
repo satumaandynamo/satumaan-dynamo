@@ -1,26 +1,30 @@
-import React from "react";
-import logo from "./../../logo.svg";
-import "./App.css";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import { Button, Paper } from "@material-ui/core";
-function App() {
-  return (
-    <Container maxWidth="sm" className="App">
-      <Paper>
-        <img src={logo} className="App-logo" alt="logo" />
-        <Typography variant="h4" component="h1" gutterBottom>
-          Satumaan Dynamo
-        </Typography>
-        <Button variant="contained" color="primary">
-          Primary Button
-        </Button>
-        <Button variant="contained" color="secondary">
-          Secondary Button
-        </Button>
-      </Paper>
-    </Container>
-  );
+import React, { Component, Suspense } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import i18n from "./i18n";
+
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contact";
+import Error from "./Error";
+import Navigation from "./Navigation";
+import Loading from "./Loading";
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Navigation>
+            <Route path="/" element={Home} exact />
+            <Route path="/about" element={About} />
+            <Route path="/contact" element={Contact} />
+            <Route element={Error} />
+          </Navigation>
+          <Suspense fallback={<Loading />}></Suspense>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
+
 export default App;
