@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import Navbar from "./Navigation";
 import Home from "./Pages/Home";
@@ -15,26 +15,24 @@ function App() {
   );
 
   return (
-    <Router>
-      <div>
-        <Suspense fallback={<Loading />}>
-          <Navbar
-            language={language}
-            handleSetLanguage={(language) => {
-              setLanguage(language);
-              storeLanguageInLocalStorage(language);
-            }}
-          >
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-          </Navbar>
-          <Container>
-            <Header language={language}></Header>
-          </Container>
-        </Suspense>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Suspense fallback={<Loading />}>
+        <Navbar
+          language={language}
+          handleSetLanguage={(language) => {
+            setLanguage(language);
+            storeLanguageInLocalStorage(language);
+          }}
+        >
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/about" element={About} />
+            <Route path="/contact" element={<Contact language={language} />} />
+          </Routes>
+        </Navbar>
+        <Container>{/* <Header language={language}></Header> */}</Container>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
