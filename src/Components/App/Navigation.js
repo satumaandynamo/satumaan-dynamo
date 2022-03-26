@@ -18,42 +18,51 @@ import { styled } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import "./../../App.css";
+import { Rowing } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   navbarStyle: {
     backgroundColor: "transparent",
     backdropFilter: "blur(2px)",
     boxShadow: "0px 2px 8px 0px rgba(255, 255, 255, 0)",
+    justifyContent: "space-between",
   },
   navlinks: {
     display: "flex",
   },
   logo: {
+    display: "flex",
     flexGrow: "1",
     cursor: "pointer",
     fontFamily: "Saira Stencil One",
     textTransform: "uppercase",
     fontWeight: 500,
-    fontSize: 20,
+    fontSize: 16,
     lineHeight: 1.6,
     marginLeft: 5,
     color: "white",
   },
   link: {
     textDecoration: "none",
+    textTransform: "uppercase",
     background: "#ffa500",
     color: "black",
-    fontSize: "18px",
-    padding: "10px 15px 10px 15px",
+    fontSize: "14px",
+    padding: "8px",
     borderRadius: "50px",
-    marginLeft: theme.spacing(5),
-    transition: ".3s ease-in-out",
+    marginLeft: theme.spacing(1),
+    transition: ".4s ease-in-out",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     "&:hover": {
-      background: "#ffedcc",
-      transition: ".3s ease-in-out",
+      background: "#4c3100",
+      transition: ".4s ease-in-out",
+      color: "white",
     },
   },
   dropdownStyle: {
+    flexGrow: "1",
     textDecoration: "none",
     background: "#ffa500",
     color: "black",
@@ -72,19 +81,16 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   languageSelector: {
-    width: "120px",
+    width: "100px",
     borderRadius: 4,
     position: "relative",
   },
 }));
 
 const CustomSelect = styled(InputBase)(({ theme }) => ({
-  "label + &": {
-    marginTop: theme.spacing(3),
-  },
   "& .MuiInputBase-input": {
     borderRadius: 50,
-    width: 80,
+    width: 100,
     backgroundColor: "transparent",
     border: "white",
     fontSize: 16,
@@ -100,27 +106,25 @@ const CustomSelect = styled(InputBase)(({ theme }) => ({
 function Navbar(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <AppBar position="sticky" className={classes.navbarStyle}>
       <CssBaseline />
       <Toolbar>
         <Typography className={classes.logo} variant="title">
-          <span className="logo-text">
-            <Logo
-              alt="Satumaan Dynamon logo"
-              height={50}
-              className="navbar-logo"
-            />
-            Satumaan Dynamo
-          </span>
+          <Logo
+            alt="Satumaan Dynamon logo"
+            height={44}
+            className="navbar-logo"
+          />
+          <span className="logo-text">Satumaan Dynamo</span>
         </Typography>
         <FormControl
           variant="standard"
           className={classes.languageSelector}
         ></FormControl>
-        <FormControl sx={{ m: 10 }} variant="standard">
+        <FormControl variant="standard">
           <Select
             input={<CustomSelect />}
             value={props.language}
@@ -156,6 +160,15 @@ function Navbar(props) {
             </Link>
             <Link to="/contact" className={classes.link}>
               Contact
+            </Link>
+            <Link to="/" className={classes.link}>
+              Join Us!
+            </Link>
+            <Link to="/about" className={classes.link}>
+              Events
+            </Link>
+            <Link to="/contact" className={classes.link}>
+              Bike Kitchen
             </Link>
           </div>
         )}

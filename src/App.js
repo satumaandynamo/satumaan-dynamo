@@ -1,7 +1,7 @@
 import React, { useState, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home, About, Contact } from "./Components/Pages/Index.js";
-import { Navbar, Loading } from "./Components/App/Index.js";
+import { Navbar, Loading, GlobalStyles } from "./Components/App/Index.js";
 
 function App() {
   let languageStoredInLocalStorage = localStorage.getItem("language");
@@ -19,6 +19,7 @@ function App() {
             storeLanguageInLocalStorage(language);
           }}
         />
+        <GlobalStyles />
         <Routes>
           <Route exactly path="/" element={<Home />} />
           <Route exactly path="/about" element={<About />} />

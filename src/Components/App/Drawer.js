@@ -11,19 +11,23 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
+import { withThemeCreator } from "@material-ui/styles";
 
 const useStyles = makeStyles(() => ({
   link: {
     textDecoration: "none",
-    color: "black",
+    color: "white",
     fontSize: "20px",
   },
   icon: {
-    color: "white",
+    marginLeft: 20,
+    width: 44,
+    height: 44,
   },
-  drawer: {
+  drawerList: {
     width: 200,
     flexShrink: 0,
+    alignText: "right",
   },
 }));
 
@@ -31,7 +35,7 @@ function DrawerComponent(props) {
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
       <Drawer
@@ -39,7 +43,7 @@ function DrawerComponent(props) {
         onClose={() => setOpenDrawer(false)}
         anchor={"right"}
       >
-        <List className={classes.drawer}>
+        <List className={classes.drawerList}>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
               <Link to="/" className={classes.link}>
@@ -61,10 +65,31 @@ function DrawerComponent(props) {
               </Link>
             </ListItemText>
           </ListItem>
+          <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/contact" className={classes.link}>
+                Join Us!
+              </Link>
+            </ListItemText>
+          </ListItem>
+          <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/contact" className={classes.link}>
+                Bike Kitchen
+              </Link>
+            </ListItemText>
+          </ListItem>
+          <ListItem onClick={() => setOpenDrawer(false)}>
+            <ListItemText>
+              <Link to="/contact" className={classes.link}>
+                Events
+              </Link>
+            </ListItemText>
+          </ListItem>
         </List>
       </Drawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-        <MenuIcon />
+        <MenuIcon className={classes.icon} />
       </IconButton>
     </>
   );
