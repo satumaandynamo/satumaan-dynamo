@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Container } from "@material-ui/core";
 
 function Contact(props) {
   let languageStoredInLocalStorage = localStorage.getItem("language");
@@ -22,10 +23,12 @@ function Contact(props) {
     : (content = content.English);
 
   return (
-    <div>
-      <h1>{content.title}</h1>
-      <p>{content.description}</p>
-    </div>
+    <Container>
+      <div>
+        <h1>{content.title}</h1>
+        <p>{content.description}</p>
+      </div>
+    </Container>
   );
 }
 
