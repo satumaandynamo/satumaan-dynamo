@@ -11,7 +11,6 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import { withThemeCreator } from "@material-ui/styles";
 
 const useStyles = makeStyles(() => ({
   link: {

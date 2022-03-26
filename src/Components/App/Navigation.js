@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { ReactComponent as Logo } from "../../Assets/dynamo-white.svg";
 import {
   AppBar,
@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import "./../../App.css";
 import { Rowing } from "@material-ui/icons";
+import { IntlProvider } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   navbarStyle: {
@@ -103,10 +104,96 @@ const CustomSelect = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const localeList = [
+  { name: "English", code: "en", lang: "English" },
+  { name: "Suomi", code: "fi", lang: "Finnish" },
+];
+
+const titles = {
+  en: {
+    "Home.header": `Localization in Create React App`,
+    "Contact.footer": "Love you 3000",
+  },
+  fi: {
+    "Home.header": `Koti`,
+    "Contact.footer": `Yhteystiedot`,
+  },
+};
+
 function Navbar(props) {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Translations for buttons
+  let languageStoredInLocalStorage = localStorage.getItem("language");
+  let [language, setLanguage] = useState(
+    languageStoredInLocalStorage ? languageStoredInLocalStorage : "English"
+  );
+
+  let Home = {
+      English: {
+        content: "Home",
+      },
+      Suomi: {
+        content: "Etusivu",
+      },
+    },
+    About = {
+      English: {
+        content: "About",
+      },
+      Suomi: {
+        content: "Meistä",
+      },
+    },
+    Contact = {
+      English: {
+        content: "Contact",
+      },
+      Suomi: {
+        content: "Yhteystiedot",
+      },
+    },
+    JoinUs = {
+      English: {
+        content: "Join Us!",
+      },
+      Suomi: {
+        content: "Liity!",
+      },
+    },
+    Events = {
+      English: {
+        content: "Events",
+      },
+      Suomi: {
+        content: "Tapahtumat",
+      },
+    },
+    BikeKitchen = {
+      English: {
+        content: "Bike Kitchen",
+      },
+      Suomi: {
+        content: "Bike Kitchen",
+      },
+    };
+
+  props.language === "Suomi" ? (Home = Home.Suomi) : (Home = Home.English);
+  props.language === "Suomi" ? (About = About.Suomi) : (About = About.English);
+  props.language === "Suomi"
+    ? (Contact = Contact.Suomi)
+    : (Contact = Contact.English);
+  props.language === "Suomi"
+    ? (JoinUs = JoinUs.Suomi)
+    : (JoinUs = JoinUs.English);
+  props.language === "Suomi"
+    ? (Events = Events.Suomi)
+    : (Events = Events.English);
+  props.language === "Suomi"
+    ? (BikeKitchen = BikeKitchen.Suomi)
+    : (BikeKitchen = BikeKitchen.English);
 
   return (
     <AppBar position="sticky" className={classes.navbarStyle}>
@@ -152,23 +239,33 @@ function Navbar(props) {
           <DrawerComponent />
         ) : (
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
-              Home
+            <Link
+              to="/"
+              className={classes.link}
+              id="Home.header"
+              defaultMessage="Localization in Create React App"
+            >
+              {Home.content}
             </Link>
             <Link to="/about" className={classes.link}>
-              About
+              {About.content}
             </Link>
-            <Link to="/contact" className={classes.link}>
-              Contact
+            <Link
+              to="/contact"
+              className={classes.link}
+              id="Contact.header"
+              defaultMessage="Localization in Create React App"
+            >
+              {Contact.content}
             </Link>
-            <Link to="/" className={classes.link}>
-              Join Us!
+            <Link to="/joinus" className={classes.link}>
+              {JoinUs.content}
             </Link>
-            <Link to="/about" className={classes.link}>
-              Events
+            <Link to="/events" className={classes.link}>
+              {Events.content}
             </Link>
-            <Link to="/contact" className={classes.link}>
-              Bike Kitchen
+            <Link to="/bikekitchen" className={classes.link}>
+              {BikeKitchen.content}
             </Link>
           </div>
         )}
