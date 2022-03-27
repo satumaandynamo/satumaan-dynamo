@@ -105,22 +105,6 @@ const CustomSelect = styled(InputBase)(({ theme }) => ({
     },
 }))
 
-const localeList = [
-    { name: 'English', code: 'en', lang: 'English' },
-    { name: 'Suomi', code: 'fi', lang: 'Finnish' },
-]
-
-const titles = {
-    en: {
-        'Home.header': `Localization in Create React App`,
-        'Contact.footer': 'Love you 3000',
-    },
-    fi: {
-        'Home.header': `Koti`,
-        'Contact.footer': `Yhteystiedot`,
-    },
-}
-
 function Navbar(props) {
     const classes = useStyles()
     const theme = useTheme()
@@ -224,7 +208,7 @@ function Navbar(props) {
                 ) : (
                     <div className={classes.navlinks}>
                         <Link
-                            to="/"
+                            to="/satumaan-dynamo"
                             className={classes.link}
                             id="Home.header"
                             defaultMessage="Localization in Create React App"
