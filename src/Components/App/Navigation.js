@@ -57,10 +57,10 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         '&:hover': {
-            background: '#4c3100',
+            background: '#ffe4b3',
             boxShadow: 'none',
             transition: '.4s ease-in-out',
-            color: 'white',
+            color: 'black',
         },
     },
     dropdownStyle: {
@@ -92,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
 const CustomSelect = styled(InputBase)(({ theme }) => ({
     '& .MuiInputBase-input': {
         borderRadius: 50,
-        width: 100,
         backgroundColor: 'transparent',
         border: 'white',
         fontSize: 16,
@@ -102,6 +101,7 @@ const CustomSelect = styled(InputBase)(({ theme }) => ({
             borderRadius: 50,
             boxShadow: '0 0 0 1px inset #fff',
         },
+        textAlign: 'right',
     },
 }))
 
@@ -112,7 +112,9 @@ function Navbar(props) {
 
     // Translations for buttons
     let languageStoredInLocalStorage = localStorage.getItem('language')
-    let [language, setLanguage] = useState(languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English')
+    let [language, setLanguage] = useState(
+        languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English'
+    )
 
     let Home = {
             English: {
@@ -165,30 +167,55 @@ function Navbar(props) {
 
     props.language === 'Suomi' ? (Home = Home.Suomi) : (Home = Home.English)
     props.language === 'Suomi' ? (About = About.Suomi) : (About = About.English)
-    props.language === 'Suomi' ? (Contact = Contact.Suomi) : (Contact = Contact.English)
-    props.language === 'Suomi' ? (JoinUs = JoinUs.Suomi) : (JoinUs = JoinUs.English)
-    props.language === 'Suomi' ? (Events = Events.Suomi) : (Events = Events.English)
-    props.language === 'Suomi' ? (BikeKitchen = BikeKitchen.Suomi) : (BikeKitchen = BikeKitchen.English)
+    props.language === 'Suomi'
+        ? (Contact = Contact.Suomi)
+        : (Contact = Contact.English)
+    props.language === 'Suomi'
+        ? (JoinUs = JoinUs.Suomi)
+        : (JoinUs = JoinUs.English)
+    props.language === 'Suomi'
+        ? (Events = Events.Suomi)
+        : (Events = Events.English)
+    props.language === 'Suomi'
+        ? (BikeKitchen = BikeKitchen.Suomi)
+        : (BikeKitchen = BikeKitchen.English)
 
     return (
         <AppBar position="sticky" className={classes.navbarStyle}>
             <CssBaseline />
             <Toolbar>
-                <Typography className={classes.logo} variant="title">
-                    <Logo alt="Satumaan Dynamon logo" height={44} className="navbar-logo" />
+                <Typography
+                    className={classes.logo}
+                    variant="title"
+                    component={Link}
+                    to="/satumaan-dynamo"
+                    style={{ boxShadow: 'none' }}
+                >
+                    <Logo
+                        alt="Satumaan Dynamon logo"
+                        height={44}
+                        className="navbar-logo"
+                    />
                     <span className="logo-text">Satumaan Dynamo</span>
                 </Typography>
-                <FormControl variant="standard" className={classes.languageSelector}></FormControl>
+                <FormControl
+                    variant="standard"
+                    className={classes.languageSelector}
+                ></FormControl>
                 <FormControl variant="standard">
                     <Select
                         input={<CustomSelect />}
                         value={props.language}
-                        onChange={(e) => props.handleSetLanguage(e.target.value)}
+                        onChange={(e) =>
+                            props.handleSetLanguage(e.target.value)
+                        }
                     >
                         <MenuItem
                             value="English"
                             MenuProps={{
-                                classes: { paper: classes.dropdownListItemStyle },
+                                classes: {
+                                    paper: classes.dropdownListItemStyle,
+                                },
                             }}
                         >
                             English
@@ -196,7 +223,9 @@ function Navbar(props) {
                         <MenuItem
                             value="Suomi"
                             MenuProps={{
-                                classes: { paper: classes.dropdownListItemStyle },
+                                classes: {
+                                    paper: classes.dropdownListItemStyle,
+                                },
                             }}
                         >
                             Suomi
@@ -207,23 +236,13 @@ function Navbar(props) {
                     <DrawerComponent />
                 ) : (
                     <div className={classes.navlinks}>
-                        <Link
-                            to="/satumaan-dynamo"
-                            className={classes.link}
-                            id="Home.header"
-                            defaultMessage="Localization in Create React App"
-                        >
+                        <Link to="/satumaan-dynamo" className={classes.link}>
                             {Home.content}
                         </Link>
                         <Link to="/about" className={classes.link}>
                             {About.content}
                         </Link>
-                        <Link
-                            to="/contact"
-                            className={classes.link}
-                            id="Contact.header"
-                            defaultMessage="Localization in Create React App"
-                        >
+                        <Link to="/contact" className={classes.link}>
                             {Contact.content}
                         </Link>
                         <Link to="/joinus" className={classes.link}>

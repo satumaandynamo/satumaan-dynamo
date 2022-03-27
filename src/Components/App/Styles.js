@@ -23,6 +23,7 @@ const useStyles = makeStyles(() =>
             '.MuiContainer-maxWidthLg': {
                 padding: '7%',
                 whiteSpace: 'pre-line',
+                minHeight: 'calc(100vh - 120px)',
             },
             a: {
                 boxShadow: 'inset 0px -3px 0px 0px #FFA500',

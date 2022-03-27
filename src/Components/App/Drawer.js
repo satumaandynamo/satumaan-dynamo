@@ -18,15 +18,13 @@ const useStyles = makeStyles(() => ({
         color: 'white',
         fontSize: '20px',
     },
-    icon: {
-        marginLeft: 20,
-        width: 44,
-        height: 44,
-    },
     drawerList: {
         width: 200,
         flexShrink: 0,
         alignText: 'right',
+    },
+    button: {
+        marginTop: 2,
     },
 }))
 
@@ -37,11 +35,18 @@ function DrawerComponent(props) {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
     return (
         <>
-            <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)} anchor={'right'}>
+            <Drawer
+                open={openDrawer}
+                onClose={() => setOpenDrawer(false)}
+                anchor={'right'}
+            >
                 <List className={classes.drawerList}>
                     <ListItem onClick={() => setOpenDrawer(false)}>
                         <ListItemText>
-                            <Link to="/satumaan-dynamo" className={classes.link}>
+                            <Link
+                                to="/satumaan-dynamo"
+                                className={classes.link}
+                            >
                                 Home
                             </Link>
                         </ListItemText>
@@ -83,8 +88,12 @@ function DrawerComponent(props) {
                     </ListItem>
                 </List>
             </Drawer>
-            <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-                <MenuIcon className={classes.icon} />
+            <IconButton
+                onClick={() => setOpenDrawer(!openDrawer)}
+                size="large"
+                className={classes.button}
+            >
+                <MenuIcon fontSize="inherit" />
             </IconButton>
         </>
     )
