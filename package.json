@@ -1,6 +1,6 @@
 {
     "name": "satumaandynamo",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "homepage": "https://satumaandynamo.github.io/satumaan-dynamo",
     "private": true,
     "dependencies": {
