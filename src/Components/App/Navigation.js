@@ -12,57 +12,17 @@ import {
     MenuItem,
     FormControl,
     InputBase,
-    InputLabel,
+    createTheme,
+    ThemeProvider,
+    Switch,
 } from '@material-ui/core'
 import { styled } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
 import DrawerComponent from './Drawer'
 import './../../App.css'
+import { dark, light } from './../../theme.js'
 
 const useStyles = makeStyles((theme) => ({
-    navbarStyle: {
-        backgroundColor: 'transparent',
-        backdropFilter: 'blur(2px)',
-        boxShadow: '0px 2px 8px 0px rgba(255, 255, 255, 0)',
-        justifyContent: 'space-between',
-    },
-    navlinks: {
-        display: 'flex',
-    },
-    logo: {
-        display: 'flex',
-        flexGrow: '1',
-        cursor: 'pointer',
-        fontFamily: 'Saira Stencil One',
-        textTransform: 'uppercase',
-        fontWeight: 500,
-        fontSize: 16,
-        lineHeight: 1.6,
-        marginLeft: 5,
-        color: 'white',
-    },
-    link: {
-        textDecoration: 'none',
-        textTransform: 'uppercase',
-        background: '#ffa500',
-        color: 'black',
-        fontSize: '14px',
-        fontWeight: 'Light',
-        boxShadow: 'none',
-        padding: '8px',
-        borderRadius: '50px',
-        marginLeft: theme.spacing(1),
-        transition: '.4s ease-in-out',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        '&:hover': {
-            background: '#ffe4b3',
-            boxShadow: 'none',
-            transition: '.4s ease-in-out',
-            color: 'black',
-        },
-    },
     dropdownStyle: {
         flexGrow: '1',
         textDecoration: 'none',
@@ -115,6 +75,14 @@ function Navbar(props) {
     let [language, setLanguage] = useState(
         languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English'
     )
+
+    // Toggler
+
+    const [isDarkTheme, setIsDarkTheme] = useState(false)
+
+    const changeTheme = () => {
+        setIsDarkTheme(!isDarkTheme)
+    }
 
     let Home = {
             English: {
@@ -181,83 +149,94 @@ function Navbar(props) {
         : (BikeKitchen = BikeKitchen.English)
 
     return (
-        <AppBar position="sticky" className={classes.navbarStyle}>
-            <CssBaseline />
-            <Toolbar>
-                <Typography
-                    className={classes.logo}
-                    variant="title"
-                    component={Link}
-                    to="/satumaan-dynamo"
-                    style={{ boxShadow: 'none' }}
+        <ThemeProvider
+            theme={isDarkTheme ? createTheme(dark) : createTheme(light)}
+        >
+            <AppBar position="sticky" style={{ background: 'transparent' }}>
+                <CssBaseline />
+                <Toolbar
+                    className="navbarstyle"
+                    style={{ background: 'transparent' }}
                 >
-                    <Logo
-                        alt="Satumaan Dynamon logo"
-                        height={44}
-                        className="navbar-logo"
-                    />
-                    <span className="logo-text">Satumaan Dynamo</span>
-                </Typography>
-                <FormControl
-                    variant="standard"
-                    className={classes.languageSelector}
-                ></FormControl>
-                <FormControl variant="standard">
-                    <Select
-                        input={<CustomSelect />}
-                        value={props.language}
-                        onChange={(e) =>
-                            props.handleSetLanguage(e.target.value)
-                        }
-                    >
-                        <MenuItem
-                            value="English"
-                            MenuProps={{
-                                classes: {
-                                    paper: classes.dropdownListItemStyle,
-                                },
-                            }}
+                    <div>
+                        <Typography
+                            variant="title"
+                            component={Link}
+                            to="/satumaan-dynamo"
+                            className="navbar-logo-area"
                         >
-                            English
-                        </MenuItem>
-                        <MenuItem
-                            value="Suomi"
-                            MenuProps={{
-                                classes: {
-                                    paper: classes.dropdownListItemStyle,
-                                },
-                            }}
-                        >
-                            Suomi
-                        </MenuItem>
-                    </Select>
-                </FormControl>
-                {isMobile ? (
-                    <DrawerComponent />
-                ) : (
-                    <div className={classes.navlinks}>
-                        <Link to="/satumaan-dynamo" className={classes.link}>
-                            {Home.content}
-                        </Link>
-                        <Link to="/about" className={classes.link}>
-                            {About.content}
-                        </Link>
-                        <Link to="/contact" className={classes.link}>
-                            {Contact.content}
-                        </Link>
-                        <Link to="/joinus" className={classes.link}>
-                            {JoinUs.content}
-                        </Link>
-                        <Link to="/events" className={classes.link}>
-                            {Events.content}
-                        </Link>
-                        <Link to="/bikekitchen" className={classes.link}>
-                            {BikeKitchen.content}
-                        </Link>
+                            <Logo
+                                alt="Satumaan Dynamon logo"
+                                height={44}
+                                className="navbar-logo"
+                            />
+                            <span className="logo-text">Satumaan Dynamo</span>
+                        </Typography>
                     </div>
-                )}
-            </Toolbar>
-        </AppBar>
+                    <div className="navbar-link-area">
+                        <FormControl
+                            variant="standard"
+                            className={classes.languageSelector}
+                        ></FormControl>
+                        <FormControl variant="standard">
+                            <Select
+                                input={<CustomSelect />}
+                                value={props.language}
+                                onChange={(e) =>
+                                    props.handleSetLanguage(e.target.value)
+                                }
+                            >
+                                <MenuItem
+                                    value="English"
+                                    MenuProps={{
+                                        classes: {
+                                            paper: classes.dropdownListItemStyle,
+                                        },
+                                    }}
+                                >
+                                    English
+                                </MenuItem>
+                                <MenuItem
+                                    value="Suomi"
+                                    MenuProps={{
+                                        classes: {
+                                            paper: classes.dropdownListItemStyle,
+                                        },
+                                    }}
+                                >
+                                    Suomi
+                                </MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Switch checked={isDarkTheme} onChange={changeTheme} />
+                        {isMobile ? (
+                            <DrawerComponent />
+                        ) : (
+                            <div className="navbar-links-div">
+                                <Link to="/satumaan-dynamo" className="navlink">
+                                    {Home.content}
+                                </Link>
+                                <Link to="/about" className="navlink">
+                                    {About.content}
+                                </Link>
+                                <Link to="/contact" className="navlink">
+                                    {Contact.content}
+                                </Link>
+                                <Link to="/joinus" className="navlink">
+                                    {JoinUs.content}
+                                </Link>
+                                <Link to="/events" className="navlink">
+                                    {Events.content}
+                                </Link>
+                                <Link to="/bikekitchen" className="navlink">
+                                    {BikeKitchen.content}
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </ThemeProvider>
     )
 }
 

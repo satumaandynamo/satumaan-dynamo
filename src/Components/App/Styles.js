@@ -39,6 +39,18 @@ const useStyles = makeStyles(() =>
                 transition: '.4s ease-in-out',
                 color: 'white',
             },
+            '& .MuiInputBase-input': {
+                borderRadius: 50,
+                backgroundColor: 'transparent',
+                border: 'white',
+                fontSize: 16,
+                padding: '10px 26px 10px 12px',
+                '&:focus': {
+                    borderRadius: 50,
+                    boxShadow: '0 0 0 1px inset #fff',
+                },
+                textAlign: 'right',
+            },
         },
     })
 )
