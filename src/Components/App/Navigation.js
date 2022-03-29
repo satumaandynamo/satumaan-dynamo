@@ -156,14 +156,6 @@ function Navbar(props) {
                 content: 'Yhteystiedot',
             },
         },
-        JoinUs = {
-            English: {
-                content: 'Join Us!',
-            },
-            Suomi: {
-                content: 'Liity!',
-            },
-        },
         Events = {
             English: {
                 content: 'Events',
@@ -186,9 +178,6 @@ function Navbar(props) {
     props.language === 'Suomi'
         ? (Contact = Contact.Suomi)
         : (Contact = Contact.English)
-    props.language === 'Suomi'
-        ? (JoinUs = JoinUs.Suomi)
-        : (JoinUs = JoinUs.English)
     props.language === 'Suomi'
         ? (Events = Events.Suomi)
         : (Events = Events.English)
@@ -271,20 +260,17 @@ function Navbar(props) {
                                 <Link to="/satumaan-dynamo" className="navlink">
                                     {Home.content}
                                 </Link>
+                                <Link to="/bikekitchen" className="navlink">
+                                    {BikeKitchen.content}
+                                </Link>
                                 <Link to="/about" className="navlink">
                                     {About.content}
                                 </Link>
                                 <Link to="/contact" className="navlink">
                                     {Contact.content}
                                 </Link>
-                                <Link to="/joinus" className="navlink">
-                                    {JoinUs.content}
-                                </Link>
                                 <Link to="/events" className="navlink">
                                     {Events.content}
-                                </Link>
-                                <Link to="/bikekitchen" className="navlink">
-                                    {BikeKitchen.content}
                                 </Link>
                             </div>
                         )}

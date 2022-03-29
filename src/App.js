@@ -6,7 +6,6 @@ import {
     Contact,
     BikeKitchen,
     Events,
-    JoinUs,
 } from './Components/Pages/Index.js'
 import {
     Navbar,
@@ -57,11 +56,6 @@ function App() {
                         exactly
                         path="/events"
                         element={<Events language={language} />}
-                    />
-                    <Route
-                        exactly
-                        path="/joinus"
-                        element={<JoinUs language={language} />}
                     />
                 </Routes>
             </Suspense>
