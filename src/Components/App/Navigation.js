@@ -12,57 +12,17 @@ import {
     MenuItem,
     FormControl,
     InputBase,
-    InputLabel,
+    createTheme,
+    ThemeProvider,
+    Switch,
 } from '@material-ui/core'
 import { styled } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
 import DrawerComponent from './Drawer'
 import './../../App.css'
+import { dark, light } from './../../theme.js'
 
 const useStyles = makeStyles((theme) => ({
-    navbarStyle: {
-        backgroundColor: 'transparent',
-        backdropFilter: 'blur(2px)',
-        boxShadow: '0px 2px 8px 0px rgba(255, 255, 255, 0)',
-        justifyContent: 'space-between',
-    },
-    navlinks: {
-        display: 'flex',
-    },
-    logo: {
-        display: 'flex',
-        flexGrow: '1',
-        cursor: 'pointer',
-        fontFamily: 'Saira Stencil One',
-        textTransform: 'uppercase',
-        fontWeight: 500,
-        fontSize: 16,
-        lineHeight: 1.6,
-        marginLeft: 5,
-        color: 'white',
-    },
-    link: {
-        textDecoration: 'none',
-        textTransform: 'uppercase',
-        background: '#ffa500',
-        color: 'black',
-        fontSize: '14px',
-        fontWeight: 'Light',
-        boxShadow: 'none',
-        padding: '8px',
-        borderRadius: '50px',
-        marginLeft: theme.spacing(1),
-        transition: '.4s ease-in-out',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        '&:hover': {
-            background: '#4c3100',
-            boxShadow: 'none',
-            transition: '.4s ease-in-out',
-            color: 'white',
-        },
-    },
     dropdownStyle: {
         flexGrow: '1',
         textDecoration: 'none',
@@ -92,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
 const CustomSelect = styled(InputBase)(({ theme }) => ({
     '& .MuiInputBase-input': {
         borderRadius: 50,
-        width: 100,
         backgroundColor: 'transparent',
         border: 'white',
         fontSize: 16,
@@ -102,24 +61,57 @@ const CustomSelect = styled(InputBase)(({ theme }) => ({
             borderRadius: 50,
             boxShadow: '0 0 0 1px inset #fff',
         },
+        textAlign: 'right',
     },
 }))
 
-const localeList = [
-    { name: 'English', code: 'en', lang: 'English' },
-    { name: 'Suomi', code: 'fi', lang: 'Finnish' },
-]
-
-const titles = {
-    en: {
-        'Home.header': `Localization in Create React App`,
-        'Contact.footer': 'Love you 3000',
+const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+    width: 62,
+    height: 34,
+    padding: 7,
+    '& .MuiSwitch-switchBase': {
+        margin: 1,
+        padding: 0,
+        transform: 'translateX(6px)',
+        '&.Mui-checked': {
+            color: '#fff',
+            transform: 'translateX(22px)',
+            '& .MuiSwitch-thumb:before': {
+                backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+                    '#fff'
+                )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+            },
+            '& + .MuiSwitch-track': {
+                opacity: 1,
+                backgroundColor:
+                    theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+            },
+        },
     },
-    fi: {
-        'Home.header': `Koti`,
-        'Contact.footer': `Yhteystiedot`,
+    '& .MuiSwitch-thumb': {
+        backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+        width: 32,
+        height: 32,
+        '&:before': {
+            content: "''",
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            left: 0,
+            top: 0,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+                '#fff'
+            )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+        },
     },
-}
+    '& .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+        borderRadius: 20 / 2,
+    },
+}))
 
 function Navbar(props) {
     const classes = useStyles()
@@ -128,7 +120,17 @@ function Navbar(props) {
 
     // Translations for buttons
     let languageStoredInLocalStorage = localStorage.getItem('language')
-    let [language, setLanguage] = useState(languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English')
+    let [language, setLanguage] = useState(
+        languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English'
+    )
+
+    // Toggler
+
+    const [isDarkTheme, setIsDarkTheme] = useState(false)
+
+    const changeTheme = () => {
+        setIsDarkTheme(!isDarkTheme)
+    }
 
     let Home = {
             English: {
@@ -181,80 +183,115 @@ function Navbar(props) {
 
     props.language === 'Suomi' ? (Home = Home.Suomi) : (Home = Home.English)
     props.language === 'Suomi' ? (About = About.Suomi) : (About = About.English)
-    props.language === 'Suomi' ? (Contact = Contact.Suomi) : (Contact = Contact.English)
-    props.language === 'Suomi' ? (JoinUs = JoinUs.Suomi) : (JoinUs = JoinUs.English)
-    props.language === 'Suomi' ? (Events = Events.Suomi) : (Events = Events.English)
-    props.language === 'Suomi' ? (BikeKitchen = BikeKitchen.Suomi) : (BikeKitchen = BikeKitchen.English)
+    props.language === 'Suomi'
+        ? (Contact = Contact.Suomi)
+        : (Contact = Contact.English)
+    props.language === 'Suomi'
+        ? (JoinUs = JoinUs.Suomi)
+        : (JoinUs = JoinUs.English)
+    props.language === 'Suomi'
+        ? (Events = Events.Suomi)
+        : (Events = Events.English)
+    props.language === 'Suomi'
+        ? (BikeKitchen = BikeKitchen.Suomi)
+        : (BikeKitchen = BikeKitchen.English)
 
     return (
-        <AppBar position="sticky" className={classes.navbarStyle}>
-            <CssBaseline />
-            <Toolbar>
-                <Typography className={classes.logo} variant="title">
-                    <Logo alt="Satumaan Dynamon logo" height={44} className="navbar-logo" />
-                    <span className="logo-text">Satumaan Dynamo</span>
-                </Typography>
-                <FormControl variant="standard" className={classes.languageSelector}></FormControl>
-                <FormControl variant="standard">
-                    <Select
-                        input={<CustomSelect />}
-                        value={props.language}
-                        onChange={(e) => props.handleSetLanguage(e.target.value)}
-                    >
-                        <MenuItem
-                            value="English"
-                            MenuProps={{
-                                classes: { paper: classes.dropdownListItemStyle },
+        <ThemeProvider
+            theme={isDarkTheme ? createTheme(dark) : createTheme(light)}
+        >
+            <AppBar position="sticky" style={{ background: 'transparent' }}>
+                <CssBaseline />
+                <Toolbar
+                    className="navbarstyle"
+                    style={{ background: 'transparent' }}
+                >
+                    <div>
+                        <Typography
+                            variant="title"
+                            component={Link}
+                            to="/satumaan-dynamo"
+                            className="navbar-logo-area"
+                            color="secondary"
+                            style={{
+                                boxShadow: 'none',
                             }}
                         >
-                            English
-                        </MenuItem>
-                        <MenuItem
-                            value="Suomi"
-                            MenuProps={{
-                                classes: { paper: classes.dropdownListItemStyle },
-                            }}
-                        >
-                            Suomi
-                        </MenuItem>
-                    </Select>
-                </FormControl>
-                {isMobile ? (
-                    <DrawerComponent />
-                ) : (
-                    <div className={classes.navlinks}>
-                        <Link
-                            to="/"
-                            className={classes.link}
-                            id="Home.header"
-                            defaultMessage="Localization in Create React App"
-                        >
-                            {Home.content}
-                        </Link>
-                        <Link to="/about" className={classes.link}>
-                            {About.content}
-                        </Link>
-                        <Link
-                            to="/contact"
-                            className={classes.link}
-                            id="Contact.header"
-                            defaultMessage="Localization in Create React App"
-                        >
-                            {Contact.content}
-                        </Link>
-                        <Link to="/joinus" className={classes.link}>
-                            {JoinUs.content}
-                        </Link>
-                        <Link to="/events" className={classes.link}>
-                            {Events.content}
-                        </Link>
-                        <Link to="/bikekitchen" className={classes.link}>
-                            {BikeKitchen.content}
-                        </Link>
+                            <Logo
+                                alt="Satumaan Dynamon logo"
+                                height={44}
+                                className="navbar-logo"
+                            />
+                            <span className="logo-text">Satumaan Dynamo</span>
+                        </Typography>
                     </div>
-                )}
-            </Toolbar>
-        </AppBar>
+                    <div className="navbar-link-area">
+                        <FormControl
+                            variant="standard"
+                            className={classes.languageSelector}
+                        ></FormControl>
+                        <FormControl variant="standard">
+                            <Select
+                                input={<CustomSelect />}
+                                value={props.language}
+                                onChange={(e) =>
+                                    props.handleSetLanguage(e.target.value)
+                                }
+                            >
+                                <MenuItem
+                                    value="English"
+                                    MenuProps={{
+                                        classes: {
+                                            paper: classes.dropdownListItemStyle,
+                                        },
+                                    }}
+                                >
+                                    English
+                                </MenuItem>
+                                <MenuItem
+                                    value="Suomi"
+                                    MenuProps={{
+                                        classes: {
+                                            paper: classes.dropdownListItemStyle,
+                                        },
+                                    }}
+                                >
+                                    Suomi
+                                </MenuItem>
+                            </Select>
+                        </FormControl>
+                        <MaterialUISwitch
+                            checked={isDarkTheme}
+                            onChange={changeTheme}
+                        />
+                        {isMobile ? (
+                            <DrawerComponent />
+                        ) : (
+                            <div className="navbar-links-div">
+                                <Link to="/satumaan-dynamo" className="navlink">
+                                    {Home.content}
+                                </Link>
+                                <Link to="/about" className="navlink">
+                                    {About.content}
+                                </Link>
+                                <Link to="/contact" className="navlink">
+                                    {Contact.content}
+                                </Link>
+                                <Link to="/joinus" className="navlink">
+                                    {JoinUs.content}
+                                </Link>
+                                <Link to="/events" className="navlink">
+                                    {Events.content}
+                                </Link>
+                                <Link to="/bikekitchen" className="navlink">
+                                    {BikeKitchen.content}
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </ThemeProvider>
     )
 }
 
