@@ -14,6 +14,7 @@ import {
     GlobalStyles,
     Footer,
 } from './Components/App/Index.js'
+import i18n from './lib/i18n/index.js'
 
 function App() {
     let languageStoredInLocalStorage = localStorage.getItem('language')
@@ -29,6 +30,7 @@ function App() {
                     handleSetLanguage={(language) => {
                         setLanguage(language)
                         storeLanguageInLocalStorage(language)
+                        i18n.changeLanguage(language === 'Suomi' ? 'fi' : 'en')
                     }}
                 />
                 <GlobalStyles />
