@@ -1,77 +1,74 @@
 import React, { useState, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
-    Home,
-    About,
-    Contact,
-    BikeKitchen,
-    Events,
-    JoinUs,
-} from './Components/Pages/Index.js'
+  Home,
+  About,
+  Contact,
+  BikeKitchen,
+  Events,
+} from './components/pages/index.js'
 import {
-    Navbar,
-    Loading,
-    GlobalStyles,
-    Footer,
-} from './Components/App/Index.js'
+  Navbar,
+  Loading,
+  GlobalStyles,
+  Footer,
+} from './components/app/index.js'
+import i18n from './lib/i18n/index.js'
 
 function App() {
-    let languageStoredInLocalStorage = localStorage.getItem('language')
-    let [language, setLanguage] = useState(
-        languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English'
-    )
+  let languageStoredInLocalStorage = localStorage.getItem('language')
+  let [language, setLanguage] = useState(
+    languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English'
+  )
 
-    return (
-        <BrowserRouter>
-            <Suspense fallback={<Loading />}>
-                <Navbar
-                    language={language}
-                    handleSetLanguage={(language) => {
-                        setLanguage(language)
-                        storeLanguageInLocalStorage(language)
-                    }}
-                />
-                <GlobalStyles />
-                <Routes>
-                    <Route
-                        exactly
-                        path="/satumaan-dynamo"
-                        element={<Home language={language} />}
-                    />
-                    <Route
-                        exactly
-                        path="/about"
-                        element={<About language={language} />}
-                    />
-                    <Route
-                        exactly
-                        path="/contact"
-                        element={<Contact language={language} />}
-                    />
-                    <Route
-                        exactly
-                        path="/bikekitchen"
-                        element={<BikeKitchen language={language} />}
-                    />
-                    <Route
-                        exactly
-                        path="/events"
-                        element={<Events language={language} />}
-                    />
-                    <Route
-                        exactly
-                        path="/joinus"
-                        element={<JoinUs language={language} />}
-                    />
-                </Routes>
-            </Suspense>
-            <Footer />
-        </BrowserRouter>
-    )
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<Loading />}>
+        {/* <GlobalStyles /> */}
+        <Navbar
+          language={language}
+          handleSetLanguage={(language) => {
+            setLanguage(language)
+            storeLanguageInLocalStorage(language)
+            i18n.changeLanguage(language === 'Suomi' ? 'fi' : 'en')
+          }}
+        />
+
+        <Routes>
+          <Route
+            exactly
+            path="/satumaan-dynamo"
+            element={<Home language={language} />}
+          />
+          <Route
+            exactly
+            path="/about"
+            element={<About language={language} />}
+          />
+          <Route
+            exactly
+            path="/contact"
+            element={<Contact language={language} />}
+          />
+          <Route
+            exactly
+            path="/bikekitchen"
+            element={<BikeKitchen language={language} />}
+          />
+          <Route
+            exactly
+            path="/events"
+            element={<Events language={language} />}
+          />
+        </Routes>
+      </Suspense>
+      <Footer />
+    </BrowserRouter>
+  )
 }
 
 function storeLanguageInLocalStorage(language) {
-    localStorage.setItem('language', language)
+  localStorage.setItem('language', language)
 }
 
 export default App
