@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
-import { Header } from '../headings'
-import { Paragraph } from '../texts'
+import { Header } from '../styles/headings'
+import { Paragraph } from '../styles/texts'
 import i18n from '../../lib/i18n'
 
 const Events = () => (

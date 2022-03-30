@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
-import { Header } from '../headings'
+import { Header } from '../styles/headings'
 import i18n from '../../lib/i18n'
-import { Paragraph } from '../texts'
+import { Paragraph } from '../styles/texts'
 
 const Contact = () => (
   <Container>
