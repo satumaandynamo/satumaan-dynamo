@@ -6,69 +6,46 @@ import {
   Contact,
   BikeKitchen,
   Events,
-} from './components/pages/index.js'
+  JoinUs,
+} from './Components/Pages/Index.js'
 import {
   Navbar,
   Loading,
   GlobalStyles,
   Footer,
-} from './components/app/index.js'
+} from './Components/App/Index.js'
 import i18n from './lib/i18n/index.js'
 
 function App() {
-  let languageStoredInLocalStorage = localStorage.getItem('language')
-  let [language, setLanguage] = useState(
-    languageStoredInLocalStorage ? languageStoredInLocalStorage : 'English'
-  )
-
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
-        {/* <GlobalStyles /> */}
         <Navbar
-          language={language}
           handleSetLanguage={(language) => {
-            setLanguage(language)
-            storeLanguageInLocalStorage(language)
-            i18n.changeLanguage(language === 'Suomi' ? 'fi' : 'en')
+            i18n.changeLanguage(language)
+            localStorage.setItem('i18nextLng', language)
           }}
         />
-
+        <GlobalStyles />
         <Routes>
-          <Route
-            exactly
-            path="/satumaan-dynamo"
-            element={<Home language={language} />}
-          />
-          <Route
-            exactly
-            path="/about"
-            element={<About language={language} />}
-          />
-          <Route
-            exactly
-            path="/contact"
-            element={<Contact language={language} />}
-          />
-          <Route
-            exactly
-            path="/bikekitchen"
-            element={<BikeKitchen language={language} />}
-          />
-          <Route
-            exactly
-            path="/events"
-            element={<Events language={language} />}
-          />
+          <Route exactly path="/satumaan-dynamo" element={<Home />} />
+          <Route exactly path="/about" element={<About />} />
+          <Route exactly path="/contact" element={<Contact />} />
+          <Route exactly path="/bikekitchen" element={<BikeKitchen />} />
+          <Route exactly path="/events" element={<Events />} />
+          <Route exactly path="/joinus" element={<JoinUs />} />
         </Routes>
       </Suspense>
       <Footer />
     </BrowserRouter>
   )
+<<<<<<< HEAD
 }
 
 function storeLanguageInLocalStorage(language) {
   localStorage.setItem('language', language)
+=======
+>>>>>>> i18n-traslations
 }
 
 export default App

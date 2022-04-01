@@ -1,4 +1,4 @@
-const languages = {
+const language = {
   english: 'English',
   finnish: 'Suomi',
 }
@@ -18,8 +18,8 @@ const home = {
 
 export default {
   translation: {
-    languages,
+    language,
     navigation,
     home,
-  }
+  },
 }

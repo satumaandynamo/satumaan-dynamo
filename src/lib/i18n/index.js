@@ -1,26 +1,28 @@
 import i18next from 'i18next'
-import detector from 'i18next-browser-languagedetector'
-// import AsyncStoragePlugin from 'i18next-react-native-async-storage'
+import LanguageDetector from 'i18next-browser-languagedetector'
+import { initReactI18next } from 'react-i18next'
 
 import en from './en'
 import fi from './fi'
 
 i18next
-    .use(detector)
-    // .use(AsyncStoragePlugin('fi'))
-    .init({
-        interpolation: {
-            escapeValue: false,
-        },
-        debug: true,
-        resources: {
-            fi,
-            en,
-        },
-        react: {
-            wait: true,
-        },
-    })
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    interpolation: {
+      escapeValue: false,
+    },
+    debug: true,
+    resources: {
+      fi,
+      en,
+    },
+    react: {
+      bindI18n: 'loaded languageChanged',
+      bindI18nStore: 'added',
+      useSuspense: true,
+    },
+  })
 
 const i18n = i18next
 export default i18n
