@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
-import App from './App.js'
+import App from './app.js'
 import { dark, light } from './theme'
 import reportWebVitals from './reportWebVitals'
 
