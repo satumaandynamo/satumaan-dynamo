@@ -1,7 +1,7 @@
 import { CircularProgress } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 
-const Loading = () => {
+export const Loading = () => {
   const { t } = useTranslation()
 
   return (
@@ -11,5 +11,3 @@ const Loading = () => {
     </CircularProgress>
   )
 }
-
-export default Loading

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
-import { Header, Paragraph } from '../../components/styles'
 import { useTranslation } from 'react-i18next'
+import { Header, Paragraph } from '../../components'
 
 const BikeKitchen = () => {
   const { t } = useTranslation()

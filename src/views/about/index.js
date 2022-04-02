@@ -1,7 +1,8 @@
-import React, { Link } from 'react'
+import React from 'react'
 import { Container } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import { Header, SubHeader, Paragraph } from '../../components'
+import { Link } from 'react-router-dom'
 
 const About = () => {
   const { t } = useTranslation()
