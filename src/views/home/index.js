@@ -14,8 +14,8 @@ import {
   Card,
 } from '@material-ui/core'
 import Cover from '../../assets/dynamo_frontpage.jpeg'
-import { Emphasis, Header } from '../../components/styles'
 import { useTranslation } from 'react-i18next'
+import { Emphasis, Header } from '../../components'
 
 const card = (
   <React.Fragment>

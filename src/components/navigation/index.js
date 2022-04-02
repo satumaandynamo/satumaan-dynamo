@@ -18,12 +18,12 @@ import {
 } from '@material-ui/core'
 import { styled } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
-import DrawerComponent from '../navigation-drawer'
 import { dark, light } from '../../theme.js'
 import '../styles/navbar.css'
-import { LanguageDropdown, DropdownListItem } from '../styles/index'
+import { LanguageDropdown, DropdownListItem } from '../'
 import { ThemeSwitch } from '../theme-switch'
 import { useTranslation } from 'react-i18next'
+import DrawerComponent from '../navigation-drawer'
 
 function Navbar(props) {
   const theme = useTheme()

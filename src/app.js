@@ -1,18 +1,13 @@
-import { Home } from '@material-ui/icons'
 import React, { Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Navbar from './components/navigation/index.js'
-import Footer from './components/footer'
-import Loading from './components/loaders'
-import i18n from './lib/i18n/index.js'
-import About from './views/about/index.js'
-import BikeKitchen from './views/bike-kitchen/index.js'
-import Contact from './views/contact/index.js'
-import Events from './views/events/index.js'
+import { Footer, Loading, Navbar } from './components'
+import { About, BikeKitchen, Contact, Events, Home } from './views'
+import i18n from './lib/i18n'
 
 function App() {
   return (
     <BrowserRouter>
+      #
       <Suspense fallback={<Loading />}>
         <Navbar
           handleSetLanguage={(language) => {

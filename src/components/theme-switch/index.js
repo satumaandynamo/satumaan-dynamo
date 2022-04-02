@@ -47,3 +47,5 @@ export const ThemeSwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }))
+
+export default ThemeSwitch
