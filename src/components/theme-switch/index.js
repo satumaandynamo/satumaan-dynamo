@@ -1,7 +1,7 @@
 import { Switch } from '@material-ui/core'
-import { styled } from '@mui/system'
+import { styled } from '@material-ui/styles'
 
-export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+export const ThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
   padding: 7,

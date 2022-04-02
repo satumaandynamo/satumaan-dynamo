@@ -1,6 +1,16 @@
-const languages = {
+const language = {
   english: 'English',
   finnish: 'Suomi',
+}
+
+const generic = {
+  logo: {
+    text: 'Satumaan Dynamo',
+    alt: 'Satumaan Dynamon logo',
+  },
+  loaders: {
+    loading: 'Ladataan...',
+  },
 }
 
 const navigation = {
@@ -25,6 +35,13 @@ const events = {
     'Niin kutsutulla puhtaalla puolella on työpöytiä, laajakaistayhteys ja täysmittainen keittiö sekä oleskelutilaa. Puhtaalla puolella on useat tehneet töitä koronakurimuksen etätyöaikana sekä jo ennen sitä. Työpöydät ovat pääsääntöisesti työskentelykäytössä iltapäiväkuuteen saakka.  Puhtaalla puolella on järjestetty myös tapahtumia, lautapeli-iltoja sekä muita yhteisiä oleskelutuokioita. \n\nPaja on täysmittainen polkupyöräpaja puhtaan puolen vieressä, jossa dynamolaiset sekä vierailijat voivat huoltaa pyöriään omatoimisesti. Autamme, neuvomme ja jeesaamme mielellämme! Emme korjaa pyörää puolestasi vaan homman juju on meitä paikasta A paikkaan B kuljettavien kumipyörien ymmärtäminen ja yhdessä oppiminen.',
 }
 
+const about = {
+  title: 'Meistä',
+  description: 'TO-BE-DEFINED',
+  paragraph: 'YET-TO-BE-DEFINED',
+  links: 'Linkit',
+}
+
 const contact = {
   title: 'Yhteystiedot',
   description: 'TO-BE-DEFINED',
@@ -39,10 +56,12 @@ const bikekitchen = {
 
 export default {
   translation: {
-    languages,
+    language,
+    generic,
     navigation,
     home,
     events,
+    about,
     contact,
     bikekitchen,
   },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Container,
   Typography,
@@ -13,10 +13,9 @@ import {
   Button,
   Card,
 } from '@material-ui/core'
-import Cover from '../../Assets/dynamo_frontpage.jpeg'
-import i18n from '../../lib/i18n'
-import { Emphasis } from '../styles/texts'
-import { Header } from '../styles/headings'
+import Cover from '../../assets/dynamo_frontpage.jpeg'
+import { Emphasis, Header } from '../../components/styles'
+import { useTranslation } from 'react-i18next'
 
 const card = (
   <React.Fragment>
@@ -63,30 +62,34 @@ const anothercard = (
   </React.Fragment>
 )
 
-const Home = () => (
-  <div style={{}}>
-    <Container>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid item xs={12}>
-          <Paper
-            container
-            elevation={1}
-            variant="outlined"
-            style={{ padding: '2%' }}
-          >
-            <Header>{i18n.t('home.title')}</Header>
-            <Emphasis>{i18n.t('home.description')}</Emphasis>
-          </Paper>
-          <Grid item xs={6}>
-            <Card variant="outlined" sx={{ maxWidth: 345 }}></Card>
+const Home = () => {
+  const { t } = useTranslation()
+
+  return (
+    <div style={{}}>
+      <Container>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid item xs={12}>
+            <Paper
+              container
+              elevation={1}
+              variant="outlined"
+              style={{ padding: '2%' }}
+            >
+              <Header>{t('home.title')}</Header>
+              <Emphasis>{t('home.description')}</Emphasis>
+            </Paper>
+            <Grid item xs={6}>
+              <Card variant="outlined" sx={{ maxWidth: 345 }}></Card>
+            </Grid>
+            <Grid item xs={6}>
+              <Card variant="outlined"></Card>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Card variant="outlined"></Card>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
-  </div>
-)
+        </Box>
+      </Container>
+    </div>
+  )
+}
 
 export default Home

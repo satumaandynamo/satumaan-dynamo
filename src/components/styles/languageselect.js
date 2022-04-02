@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Select, MenuItem } from '@material-ui/core'
-import { styled } from '@mui/system'
 import { NoEncryption } from '@material-ui/icons'
+import { styled } from '@material-ui/styles'
 
 export const LanguageDropdown = styled(Select)({
   flexGrow: '1',
