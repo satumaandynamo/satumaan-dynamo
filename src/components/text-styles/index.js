@@ -1,18 +1,15 @@
 import { styled } from '@material-ui/core'
 
-export const Emphasis = styled('em')(
-  ({ theme }) => `
-  font-size: 20;
-  justify-content: 'center';
-  text-align: 'center';
-  `
-)
+export const Emphasis = styled('em')(({ theme }) => ({
+  fontSize: '20px',
+  justifyContent: 'center',
+  textAlign: 'center',
+}))
 
-export const Paragraph = styled('p')(
-  ({ theme }) => `
-    color: 'black';
-  `
-)
+export const Paragraph = styled('p')(({ theme }) => ({
+  color: 'black',
+}))
+
 export const Link = styled('a')({
   'a:': {
     boxShadow: 'inset 0px -3px 0px 0px #FFA500',
