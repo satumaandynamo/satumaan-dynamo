@@ -1,4 +1,4 @@
-import { Home } from '@material-ui/icons'
+import Home from './views/home/index.js'
 import React, { Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/navigation/index.js'

@@ -16,6 +16,7 @@ import {
 import Cover from '../../assets/dynamo_frontpage.jpeg'
 import { Emphasis, Header } from '../../components/styles'
 import { useTranslation } from 'react-i18next'
+import { Hero } from '../../components/hero'
 
 const card = (
   <React.Fragment>
@@ -79,6 +80,7 @@ const Home = () => {
               <Header>{t('home.title')}</Header>
               <Emphasis>{t('home.description')}</Emphasis>
             </Paper>
+            <Hero />
             <Grid item xs={6}>
               <Card variant="outlined" sx={{ maxWidth: 345 }}></Card>
             </Grid>

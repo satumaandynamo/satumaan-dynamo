@@ -24,6 +24,7 @@ const navigation = {
 
 const home = {
   title: 'Tervetuloa Dynamoon!',
+  bikekitchen: 'Tervetuloa Bike Kitcheniin torstaina klo 18-21!',
   description: 'Yhteisöllinen pyöräpaja Roihuvuoressa vuodesta 2014',
 }
 
