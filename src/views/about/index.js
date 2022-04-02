@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import { Feed } from '../../components/feed'
 
 const About = () => {
   const { t } = useTranslation()
@@ -14,6 +15,8 @@ const About = () => {
         <h2>{t('about.links')}</h2>
         <a href="">{t('about.links')}</a>
       </div>
+
+      <Feed />
     </Container>
   )
 }
