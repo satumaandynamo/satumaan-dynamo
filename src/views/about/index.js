@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Link } from 'react'
 import { Container } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import { Header, SubHeader, Paragraph } from '../../components'
 
 const About = () => {
   const { t } = useTranslation()
@@ -8,11 +9,11 @@ const About = () => {
   return (
     <Container>
       <div>
-        <h1>{t('about.title')}</h1>
-        <p>{t('about.description')}</p>
-        <p>{t('about.paragraph')}</p>
-        <h2>{t('about.links')}</h2>
-        <a href="">{t('about.links')}</a>
+        <Header>{t('about.title')}</Header>
+        <Paragraph>{t('about.description')}</Paragraph>
+        <Paragraph>{t('about.paragraph')}</Paragraph>
+        <SubHeader>{t('about.links')}</SubHeader>
+        <Link to="#">{t('about.links')}</Link>
       </div>
     </Container>
   )
