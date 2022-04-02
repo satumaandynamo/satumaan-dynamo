@@ -1,4 +1,4 @@
-import { Home } from '@material-ui/icons'
+import { Paper, Container } from '@material-ui/core'
 import React, { Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/navigation/index.js'
@@ -9,6 +9,7 @@ import About from './views/about/index.js'
 import BikeKitchen from './views/bike-kitchen/index.js'
 import Contact from './views/contact/index.js'
 import Events from './views/events/index.js'
+import Home from './views/home/index.js'
 
 function App() {
   return (
@@ -20,15 +21,18 @@ function App() {
             localStorage.setItem('i18nextLng', language)
           }}
         />
-        {/* <GlobalStyles /> */}
-        <Routes>
-          <Route exactly path="/satumaan-dynamo" element={<Home />} />
-          <Route exactly path="/about" element={<About />} />
-          <Route exactly path="/contact" element={<Contact />} />
-          <Route exactly path="/bikekitchen" element={<BikeKitchen />} />
-          <Route exactly path="/events" element={<Events />} />
-          {/* <Route exactly path="/joinus" element={<JoinUs />} /> */}
-        </Routes>
+        <Container>
+          <Paper elevation={2} variant="outlined" square>
+            <Routes>
+              <Route exactly path="/satumaan-dynamo" element={<Home />} />
+              <Route exactly path="/about" element={<About />} />
+              <Route exactly path="/contact" element={<Contact />} />
+              <Route exactly path="/bikekitchen" element={<BikeKitchen />} />
+              <Route exactly path="/events" element={<Events />} />
+              {/* <Route exactly path="/joinus" element={<JoinUs />} /> */}
+            </Routes>
+          </Paper>
+        </Container>
       </Suspense>
       <Footer />
     </BrowserRouter>

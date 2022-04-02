@@ -17,12 +17,17 @@ export const dark = {
     divider: {
       main: '#ffa500',
     },
+    background: {
+      default: '#282828',
+    },
+    divider: '#606060',
   },
   typography: {
     fontFamily: 'Space Mono',
     h1: {
       fontWeight: 500,
       lineHeight: 1.6,
+      contrastText: 'red',
     },
     h2: {
       fontWeight: 800,
@@ -45,6 +50,9 @@ export const dark = {
     borderRadius: 4,
   },
   overrides: {
+    MuiToolbar: {
+      boxShadow: 'none',
+    },
     MuiSwitch: {
       root: {
         width: 42,
@@ -78,11 +86,11 @@ export const dark = {
     },
     MuiButton: {
       root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        background: '#ffa500',
         border: 0,
         borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
+        boxShadow: 'none',
+        color: '191919',
         height: 48,
         padding: '0 30px',
       },
@@ -161,6 +169,9 @@ export const light = {
     warning: {
       main: '#e91e63',
     },
+    background: {
+      default: '#EFF2F1',
+    },
     divider: '#282828',
   },
   typography: {
@@ -193,6 +204,7 @@ export const light = {
   shape: {
     borderRadius: 4,
   },
+
   overrides: {
     MuiSwitch: {
       root: {

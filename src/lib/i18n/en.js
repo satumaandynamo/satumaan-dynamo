@@ -14,6 +14,7 @@ const navigation = {
 
 const home = {
   title: 'Welcome to Satumaan Dynamo',
+  description: 'Yhteisöllinen pyöräpaja Roihuvuoressa vuodesta 2014',
 }
 
 export default {

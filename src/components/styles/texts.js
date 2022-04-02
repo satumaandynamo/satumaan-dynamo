@@ -11,7 +11,7 @@ export const Emphasis = styled('em')(
 
 export const Paragraph = styled('p')(
   ({ theme }) => `
-    color: 'black';
+    color: 'red';
   `
 )
 export const Link = styled('a')({

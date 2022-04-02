@@ -40,7 +40,14 @@ function Navbar(props) {
 
   return (
     <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
-      <AppBar position="sticky" style={{ background: 'transparent' }}>
+      <AppBar
+        position="sticky"
+        style={{
+          background: 'transparent',
+          boxShadow: 'none',
+          marginBottom: '3%',
+        }}
+      >
         <CssBaseline />
         <Toolbar className="navbarstyle" style={{ background: 'transparent' }}>
           <div>

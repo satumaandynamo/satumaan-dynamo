@@ -57,26 +57,3 @@ export const DropdownListItem = styled(MenuItem)({
     backgroundColor: 'transparent',
   },
 })
-
-// export const languageSelector = styled() {
-//     width: '100px',
-//     borderRadius: 4,
-//     position: 'relative',
-//   },
-// }))
-
-// export const CustomSelect = styled(InputBase)(({ theme }) => ({
-//   '& .MuiInputBase-input': {
-//     borderRadius: 50,
-//     backgroundColor: 'transparent',
-//     border: 'white',
-//     fontSize: 16,
-//     padding: '10px 26px 10px 12px',
-//     transition: theme.transitions.create(['border-color', 'box-shadow']),
-//     '&:focus': {
-//       borderRadius: 50,
-//       boxShadow: '0 0 0 1px inset #fff',
-//     },
-//     textAlign: 'right',
-//   },
-// }))
