@@ -44,8 +44,8 @@ export const Feed = ({ feedType = FEED_TYPES.latest }) => {
         columnsCountBreakPoints={{ 350: 1, 750: 2, 1050: 3 }}
       >
         <Masonry gutter="20px">
-          {tiles.data.map((tile) => (
-            <Tile {...tile} />
+          {tiles.data.map((tile, i) => (
+            <Tile key={i} {...tile} />
           ))}
         </Masonry>
       </ResponsiveMasonry>
