@@ -15,8 +15,6 @@ const About = () => {
         <h2>{t('about.links')}</h2>
         <a href="">{t('about.links')}</a>
       </div>
-
-      <Feed />
     </Container>
   )
 }

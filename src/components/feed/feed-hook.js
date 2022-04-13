@@ -26,24 +26,13 @@ export function useFeed(_initialData = []) {
     data: _initialData,
   })
 
-  function get(amount) {
+  function get(type) {
     dispatch({ type: A.loading })
 
-    const image = () => {
-      const aspect = Math.random() > 0.5 ? 1 : 1
-      const height = Math.round(Math.random() * 300 + 200)
-      const width = Math.round(height * aspect)
-
-      return {
-        src: `https://random.imagecdn.app/${height}/${width}`,
-        height: height,
-        width: width,
-      }
-    }
-
-    const value = new Array(amount).fill(null).map((d) => image())
-
-    dispatch({ type: A.get, value })
+    fetch(`http://localhost:3003/api/feed?type=${type}`)
+      .then(response => response.json())
+      .then(value => dispatch({ type: A.get, value }))
+      .catch(err => console.error('Loading feed failed, ', err));
   }
 
   return [model, { get }]
